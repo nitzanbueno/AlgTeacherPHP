@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE algs [<!ELEMENT algs (alg)*>
+<!ELEMENT alg (category , description , moves , image , last-ask , phase)>
+<!ATTLIST alg id ID #REQUIRED>]>
+<algs nextid="5">
+  <alg id="0">
+    <category>ZBLL</category>
+    <description>T pure OLL case.</description>
+    <moves>(U) R U R' U R U2 R' U2 R' U' R U' R' U2 R</moves>
+    <image>http://stachu.cubing.net/v/?fmt=svg&amp;case=%28U%29%20R%20U%20R%27%20U%20R%20U2%20R%27%20U2%20R%27%20U%27%20R%20U%27%20R%27%20U2%20R&amp;size=200&amp;view=plan</image>
+    <last-ask>0</last-ask>
+    <phase>-1</phase>
+  </alg>
+  <alg id="1">
+    <category>ZBLL</category>
+    <description>T case with 2x2 block</description>
+    <moves>r U R' U' r' F R F'</moves>
+    <image>http://stachu.cubing.net/v/?fmt=png&amp;size=200&amp;case=r U R' U' r' F R F'&amp;stage=ll&amp;view=plan</image>
+    <last-ask>1458839432</last-ask>
+    <phase>1</phase>
+  </alg>
+  <alg id="2">
+    <category>OLL</category>
+    <description>T-shaped OLL</description>
+    <moves>F R U R' U' F'</moves>
+    <image>http://stachu.cubing.net/v/?fmt=svg&amp;size=200&amp;case=F R U R' U' F'&amp;stage=oll&amp;view=plan</image>
+    <last-ask>1458841355</last-ask>
+    <phase>1</phase>
+  </alg>
+  <alg id="3">
+    <category>OLL</category>
+    <description>Headlights OLL case.</description>
+    <moves>R2 D R' U2 R D' R' U2 R'</moves>
+    <image>http://stachu.cubing.net/v/?fmt=svg&amp;size=200&amp;case=R2 D R' U2 R D' R' U2 R'&amp;stage=oll&amp;view=plan</image>
+    <last-ask>1458841888</last-ask>
+    <phase>1</phase>
+  </alg>
+  <alg id="4">
+    <category>ZBLL</category>
+    <description>Headlights case with block on BL</description>
+    <moves>R2 D R' U2 R D' R' U2 R'</moves>
+    <image>http://stachu.cubing.net/v/?fmt=svg&amp;size=200&amp;case=R2 D R' U2 R D' R' U2 R'&amp;stage=ll&amp;view=plan</image>
+    <last-ask>1458842580</last-ask>
+    <phase>1</phase>
+  </alg>
+</algs>
