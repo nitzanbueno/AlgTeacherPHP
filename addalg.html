@@ -40,12 +40,12 @@
   <body>
     <form name="addAlg" action="add.php" method="post">
       <table>
-        <tr><td>Enter category here:</td><td><input type="text" name="category" required></td></tr>
-        <tr><td>Enter description here:</td><td><input type="text" name="description" required></td></tr>
-        <tr><td>Enter alg here:</td><td><input type="text" name="alg" required></td></tr>
+        <tr><td>Enter category here:</td><td><input type="text" autocomplete="off" name="category" required></td></tr>
+        <tr><td>Enter description here:</td><td><input type="text" autocomplete="off" name="description" required></td></tr>
+        <tr><td>Enter alg here:</td><td><input type="text" name="alg" autocomplete="off" required></td></tr>
         <tr>
           <td>Enter image link here:</td>
-          <td><input type="text" name="imagelink"></td>
+          <td><input type="text" name="imagelink" autocomplete="off" required></td>
           <td><button type="button" onclick="toggle()">Generate</button></td>
           <td>
             <div style="display:none" id="generateDiv">

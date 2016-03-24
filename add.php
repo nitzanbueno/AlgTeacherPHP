@@ -11,7 +11,7 @@ $doc->preserveWhiteSpace = false;
 
 $cat = $doc->createElement("category", $_POST["category"]);
 $desc = $doc->createElement("description", $_POST["description"]);
-$moves = $doc->createElement("moves", $_POST["alg"]);
+$moves = $doc->createElement("moves", stripslashes($_POST["alg"]));
 $imagelink = $doc->createElement("image", htmlspecialchars($_POST["imagelink"]));
 $lastask = $doc->createElement("last-ask", time());
 $phase = $doc->createElement("phase", 1);

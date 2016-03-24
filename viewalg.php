@@ -5,7 +5,7 @@
     <title>Alg Viewer</title>
   </head>
   <body>
-
+<a href="alglist.php">Back</a><br/>
 <?php
 
 $path = "algs.xml";
@@ -19,7 +19,11 @@ $xml = simplexml_load_file($path) or die("Error: Cannot create object");
 
 $id = $_GET["id"];
 
-$alg = $xml->xpath("//alg[@id=$id]")[0];
+if ($id == null) {
+  die("Invalid Alg.");
+}
+
+list($alg) = $xml->xpath("//alg[@id=$id]");
 if ($alg == null) {
   die("Invalid Alg.");
 }
@@ -28,10 +32,41 @@ $category = $alg->category;
 $description = $alg->description;
 $moves = $alg->moves;
 
-echo "<img src=\"$image\" /><br/>";
-echo "<b>Category:</b> $category<br/>";
-echo "<b>Description:</b> $description <br/>";
-echo "<b>Execution:</b> $moves";
+echo "<img src=\"$image\" /><br/>
+<b>Category:</b> $category<br/>
+<b>Description:</b> $description<br/>";
+
+$remembers = $_GET["mem"];
+if ($remembers != "yes" and $remembers != "no") {
+	echo "<h1>Do you remember this alg?</h1><br/>
+	<table>
+	<tr>
+	<td>
+	<form action=\"viewalg.php\" method=\"get\">
+	<input type='hidden' name='id' value='$id'/>
+	<input type='hidden' name='mem' value='yes'/>
+	<button>Yes</button>
+	</form>
+	</td>
+	<td>
+	<form action=\"viewalg.php\" method=\"get\">
+	<input type='hidden' name='id' value='$id'/>
+	<input type='hidden' name='mem' value='no'/>
+	<button>No</button>
+	</form>
+	</td>
+	</tr>
+	</table>";
+} elseif($remembers == "yes") {
+	echo "<h1>Great job!</h1>";
+} else {
+	echo "<h1>Here it is:</br>$moves</h1><br/>";	
+}
+
+echo "<br/><br/><form action='remove.php' method='post'>
+<input type='hidden' name='id' value='$id' />
+<button>Remove this Alg</button>
+</form>";
 
 ?>
 
