@@ -12,7 +12,7 @@ session_start();
   </head>
   <body>
     <h2>Alg Teacher</h2>
-    <form action="addalgdb.html">
+    <form action="addalg.html">
       <input type="submit" value="Add an Alg" />
     </form>
     <form action="logout.php">
