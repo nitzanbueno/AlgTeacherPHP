@@ -26,7 +26,7 @@ if ($id == null) {
   die("Invalid Alg.");
 }
 
-$sql = "SELECT Alg, Image, Category, Description FROM Algorithms WHERE ID=$id";
+$sql = "SELECT Alg, Image, Category, Description, Comment FROM Algorithms WHERE ID=$id";
 $result = $conn->query($sql);
 
 if ($result->num_rows == 0) {
@@ -72,7 +72,7 @@ if ($remembers != "yes" and $remembers != "no") {
 	echo "<h1>Great job!</h1>";
 } else {
 	echo "<h1>Here it is:</br></h1>Execution: $moves<br/>";
-	if ($alg["comment"] != null)
+	if ($alg["Comment"] != null)
 	{
 		echo "Comment: " . $alg["Comment"] . "<br/>";
 	}
