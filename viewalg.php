@@ -8,14 +8,17 @@
 <a href="alglist.php">Back</a><br/>
 <?php
 
-$path = "algs.xml";
-/*$doc = new DOMDocument();
-$doc->load($path);
-$doc->preserveWhiteSpace = false;
-$id = $_GET["id"];
-$alg = $doc->getElementById($id);
-echo "<img src=\"" . $alg->getElementsByTagName("image")->item(0)->nodeValue . "\" />";*/
-$xml = simplexml_load_file($path) or die("Error: Cannot create object");
+$servername = "mysql.hostinger.co.il";
+$username = "u857564284_user";
+$password = "icosahedra";
+$dbname = "u857564284_algs";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection Failed:" . $conn->connect_error);
+}
 
 $id = $_GET["id"];
 
@@ -23,14 +26,22 @@ if ($id == null) {
   die("Invalid Alg.");
 }
 
-list($alg) = $xml->xpath("//alg[@id=$id]");
+$sql = "SELECT Alg, Image, Category, Description FROM Algorithms WHERE ID=$id";
+$result = $conn->query($sql);
+
+if ($result->num_rows == 0) {
+  die("Invalid Alg.");
+}
+
+$alg = $result->fetch_assoc();
+
 if ($alg == null) {
   die("Invalid Alg.");
 }
-$image = $alg->image;
-$category = $alg->category;
-$description = $alg->description;
-$moves = $alg->moves;
+$image = $alg["Image"];
+$category = $alg["Category"];
+$description = $alg["Description"];
+$moves = $alg["Alg"];
 
 echo "<img src=\"$image\" /><br/>
 <b>Category:</b> $category<br/>
@@ -60,10 +71,10 @@ if ($remembers != "yes" and $remembers != "no") {
 } elseif($remembers == "yes") {
 	echo "<h1>Great job!</h1>";
 } else {
-	echo "<h1>Here it is:</br></h1>Execution: $moves<br/>";	
-	if ($alg->comment != null)
+	echo "<h1>Here it is:</br></h1>Execution: $moves<br/>";
+	if ($alg["comment"] != null)
 	{
-		echo "Comment: " . $alg->comment . "<br/>"; 
+		echo "Comment: " . $alg["Comment"] . "<br/>";
 	}
 }
 

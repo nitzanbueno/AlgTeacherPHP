@@ -2,44 +2,44 @@
 <body>
 
 <?php
-try {
 
-$path = "algs.xml";
-$doc = new DOMDocument();
-$doc->load($path);
-$doc->preserveWhiteSpace = false;
+$sessioname = $_SESSION["username"];
+if(!$sessioname)
+{
+  $sessioname = "default";
+}
 
-$cat = $doc->createElement("category", $_POST["category"]);
-$desc = $doc->createElement("description", $_POST["description"]);
-$moves = $doc->createElement("moves", stripslashes($_POST["alg"]));
-$imagelink = $doc->createElement("image", htmlspecialchars($_POST["imagelink"]));
-$lastask = $doc->createElement("last-ask", time());
-$phase = $doc->createElement("phase", 1);
-$id = intval($doc->documentElement->getAttribute("nextid"));
-$doc->documentElement->setAttribute("nextid", $id + 1);
-$comment = $doc->createElement("comment", $_POST["comment"]);
+$servername = "mysql.hostinger.co.il";
+$username = "u857564284_user";
+$password = "icosahedra";
+$dbname = "u857564284_algs";
 
-$algElement = $doc->createElement("alg");
-$algElement->appendChild($cat);
-$algElement->appendChild($desc);
-$algElement->appendChild($moves);
-$algElement->appendChild($imagelink);
-$algElement->appendChild($lastask);
-$algElement->appendChild($phase);
-$algElement->appendChild($comment);
-$algElement->setAttribute("id", $id);
-$doc->documentElement->appendChild($algElement);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("<h1>Addition Failed:" . $conn->connect_error . "</h1>");
+}
 
-$doc->save($path);
+
+$category = $_POST["category"];
+$desc = $_POST["description"];
+$alg = $_POST["alg"];
+$image = $_POST["imagelink"];
+$comment = $_POST["comment"];
+
+$sql = $conn->prepare("INSERT INTO Algorithms(Username, Category, Description, Alg, Image, Comment)
+VALUES (?, ?, ?, ?, ?, ?)");
+if(!$sql->bind_param("ssssss", $sessioname, $category, $desc, $alg, $image, $comment))
+{
+  die("<h1>Addition Failed:" . $sql->errno . "</h1>");
+}
+if(!$sql->execute())
+{
+  die("<h1>Addition Failed:" . $sql->errno . "</h1>");
+}
 
 echo "<h1>Algorithm added successfully.</h1>" ;
-
-
-} catch (Exception $e) {
-
-echo "<h1>Addition Failed.</h1>";
-
-}
 
 ?>
 <form action="alglist.php"><button>Back to Main Menu</button></form>

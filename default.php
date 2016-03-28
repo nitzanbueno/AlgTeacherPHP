@@ -1,4 +1,4 @@
 <?php
-header("Location: alglist.php");
+header("Location: login.php");
 die();
 ?>
