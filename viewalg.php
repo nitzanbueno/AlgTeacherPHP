@@ -60,7 +60,11 @@ if ($remembers != "yes" and $remembers != "no") {
 } elseif($remembers == "yes") {
 	echo "<h1>Great job!</h1>";
 } else {
-	echo "<h1>Here it is:</br>$moves</h1><br/>";	
+	echo "<h1>Here it is:</br></h1>Execution: $moves<br/>";	
+	if ($alg->comment != null)
+	{
+		echo "Comment: " . $alg->comment . "<br/>"; 
+	}
 }
 
 echo "<br/><br/><form action='remove.php' method='post'>

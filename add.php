@@ -17,6 +17,7 @@ $lastask = $doc->createElement("last-ask", time());
 $phase = $doc->createElement("phase", 1);
 $id = intval($doc->documentElement->getAttribute("nextid"));
 $doc->documentElement->setAttribute("nextid", $id + 1);
+$comment = $doc->createElement("comment", $_POST["comment"]);
 
 $algElement = $doc->createElement("alg");
 $algElement->appendChild($cat);
@@ -25,6 +26,7 @@ $algElement->appendChild($moves);
 $algElement->appendChild($imagelink);
 $algElement->appendChild($lastask);
 $algElement->appendChild($phase);
+$algElement->appendChild($comment);
 $algElement->setAttribute("id", $id);
 $doc->documentElement->appendChild($algElement);
 
