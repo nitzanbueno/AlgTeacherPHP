@@ -71,6 +71,7 @@ if ($remembers != "yes" and $remembers != "no") {
 } elseif($remembers == "yes") {
 	echo "<h1>Great job!</h1>";
 } else {
+	$conn->query("UPDATE Algorithms SET LastAsk=CURRENT_TIMESTAMP WHERE ID=$id");
 	echo "<h1>Here it is:</br></h1>Execution: $moves<br/>";
 	if ($alg["Comment"] != null)
 	{

@@ -39,7 +39,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT ID, Image FROM Algorithms WHERE Username='" . $sessioname . "'";
+$sql = "SELECT ID, Image FROM Algorithms WHERE Username='" . $sessioname . "' ORDER BY LastAsk DESC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
