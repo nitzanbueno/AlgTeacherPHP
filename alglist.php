@@ -9,6 +9,7 @@ session_start();
         width: 500px
       }
     </style>
+    <title>Alg List</title>
   </head>
   <body>
     <h2>Alg Teacher</h2>
